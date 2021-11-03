@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rein.android.combo">
+
+    <uses-permission android:name="ru.evotor.permission.COMBINED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Combo">
+        <service
+            android:name=".ComboPaymentService"
+            android:exported="true"
+            android:label="Оплата 50% предоплатой">
+            <meta-data
+                android:name="ru.evotor.sales_screen.BACKGROUND_COLOR"
+                android:value="@android:color/white" />
+            <intent-filter>
+                <action android:name="evo.v2.receipt.sell.payment.COMBINED" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="app_uuid"
+            android:value="31138179-5106-4084-8ea1-17039ea9bf6e" />
+
+        <activity
+            android:name=".ComboPaymentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.EVOTOR" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="ru.evotor.launcher.BACKGROUND_COLOR"
+                android:value="#F05023" />
+        </activity>
+    </application>
+
+</manifest>
