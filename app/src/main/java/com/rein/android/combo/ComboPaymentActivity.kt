@@ -1,6 +1,7 @@
 package com.rein.android.combo
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import ru.evotor.framework.calculator.MoneyCalculator
 import ru.evotor.framework.component.PaymentPerformer
@@ -18,14 +19,18 @@ import java.util.*
 import kotlin.concurrent.thread
 
 class ComboPaymentActivity : IntegrationActivity() {
+    private lateinit var okButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_combo_payment)
 
-
-        intent.getStringExtra(KEY_RECEIPT_UUID)?.let { receiptUuid ->
-            startProcessingPayment(receiptUuid)
-        } ?: setCancelAllResultAndFinish()
+        okButton = findViewById(R.id.okButton)
+        okButton.setOnClickListener {
+            intent.getStringExtra(KEY_RECEIPT_UUID)?.let { receiptUuid ->
+                startProcessingPayment(receiptUuid)
+            } ?: setCancelAllResultAndFinish()
+        }
     }
 
     private fun startProcessingPayment(receiptUuid: String) {
